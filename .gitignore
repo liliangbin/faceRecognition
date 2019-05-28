@@ -9,6 +9,11 @@ __pycache__/
 # Distribution / packaging
 .Python
 build/
+test/
+dataset/
+.pytest_cache/
+result/
+*.h5
 develop-eggs/
 dist/
 downloads/
