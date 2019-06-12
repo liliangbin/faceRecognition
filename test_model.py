@@ -11,11 +11,13 @@ def onePicture(path):
     model = Model()
     model.load()
     img = cv2.imread(path)
-    img = cv2.resize(img, (128, 128))
+    img = cv2.resize(img, (92, 112))
     img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     picType, prob = model.predict(img)
     if picType != -1:
-        name_list = read_name_list('result')
+        name_list = read_name_list('res')
+        print(name_list)
+        print(picType)
         print(name_list[picType], prob)
         print("done")
     else:
@@ -32,8 +34,10 @@ def Batch(path):
         picType, prob = model.predict(img)
         if picType != -1:
             index += 1
-            name_list = read_name_list('./result')
+            name_list = read_name_list('./res')
             print("done")
+            print(name_list)
+            print(picType)
             print(name_list[picType])
         else:
             print(" Don't know this person")
@@ -42,5 +46,9 @@ def Batch(path):
 
 
 if __name__ == '__main__':
+    onePicture('./test/chunmei.jpg')
     onePicture('./test/test.jpg')
+    onePicture('./test/9.pgm')
+
+
     #Batch(".\\test")

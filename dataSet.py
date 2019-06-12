@@ -15,7 +15,8 @@ class DataSet(object):
         self.X_test = None
         self.Y_train = None
         self.Y_test = None
-        self.img_size = 128
+        self.imgX_size = 92
+        self.imgY_size=112
         self.extract_data(path)  # 在这个类初始化的过程中读取path下的训练数据
 
     def extract_data(self, path):
@@ -28,8 +29,8 @@ class DataSet(object):
 
         # 重新格式化和标准化
         # 本案例是基于thano的，如果基于tensorflow的backend需要进行修改
-        X_train = X_train.reshape(X_train.shape[0], 1, self.img_size, self.img_size) / 255.0
-        X_test = X_test.reshape(X_test.shape[0], 1, self.img_size, self.img_size) / 255.0
+        X_train = X_train.reshape(X_train.shape[0], 1, self.imgX_size, self.imgY_size) / 255.0
+        X_test = X_test.reshape(X_test.shape[0], 1, self.imgX_size, self.imgY_size) / 255.0
 
         X_train = X_train.astype('float32')
         X_test = X_test.astype('float32')

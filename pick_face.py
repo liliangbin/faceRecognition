@@ -2,8 +2,10 @@
 __author__ = '万壑'
 
 import os
-import cv2
 import time
+
+import cv2
+
 from read_img import readAllImg
 
 
@@ -13,16 +15,15 @@ def readPicSaveFace(sourcePath, objectPath, *suffix):
         # 读取照片,注意第一个元素是文件名
         resultArray = readAllImg(sourcePath, *suffix)
 
-
         # 对list中图片逐一进行检查,找出其中的人脸然后写到目标文件夹下
 
         count = 1
         face_cascade = cv2.CascadeClassifier(
-            'D:\\Anaconda3\\envs\\tensorflow\\Lib\\site-packages\\cv2\\data\\haarcascade_frontalface_alt.xml')
+            './haarcascade_frontalface_alt.xml')
         for i in resultArray:
             if type(i) != str:
 
-                #gray = cv2.cvtColor(i, cv2.COLOR_BGR2GRAY)
+                # gray = cv2.cvtColor(i, cv2.COLOR_BGR2GRAY)
 
                 # 我也不知道为什么 。。。。。注释掉这行就可以了
 
@@ -31,8 +32,8 @@ def readPicSaveFace(sourcePath, objectPath, *suffix):
                     listStr = [str(int(time.time())), str(count)]  # 以时间戳和读取的排序作为文件名称
                     fileName = ''.join(listStr)
 
-                    f = cv2.resize(i[y:(y + h), x:(x + w)], (200, 200))
-                    cv2.imwrite(objectPath + os.sep + '%s.jpg' % fileName, f)
+                    f = cv2.resize(i[y:(y + h), x:(x + w)], (92, 112))
+                    cv2.imwrite(objectPath + os.sep + '%s.pgm' % fileName, f)
                     count += 1
     except IOError:
         print("Error")
@@ -42,8 +43,8 @@ def readPicSaveFace(sourcePath, objectPath, *suffix):
 
 
 if __name__ == '__main__':
-     readPicSaveFace('./dataset/yanweiqiong', './result/yanweiqiong', '.jpg', '.JPG', '.png', '.PNG')
-     readPicSaveFace('./dataset/liliangbin', './result/liliangbin', '.jpg', '.JPG', '.png', '.PNG')
-     readPicSaveFace('./dataset/lezhangjian', './result/lezhangjian', '.jpg', '.JPG', '.png', '.PNG')
-     readPicSaveFace('./dataset/yangyuling', './result/yangyuling', '.jpg', '.JPG', '.png', '.PNG')
-     #readPicSaveFace('./dataset/li', './result/liliangbin', '.jpg', '.JPG', '.png', '.PNG')
+    #readPicSaveFace('./dataset/yanweiqiong', './res/yanweiqiong', '.jpg', '.JPG', '.png', '.PNG')
+    readPicSaveFace('./dataset/liliangbin', './res/liliangbin', '.jpg', '.JPG', '.png', '.PNG')
+    #readPicSaveFace('./dataset/lezhangjian', './res/lezhangjian', '.jpg', '.JPG', '.png', '.PNG')
+    #readPicSaveFace('./dataset/yangyuling', './res/yangyuling', '.jpg', '.JPG', '.png', '.PNG')
+    # readPicSaveFace('./dataset/li', './result/liliangbin', '.jpg', '.JPG', '.png', '.PNG')

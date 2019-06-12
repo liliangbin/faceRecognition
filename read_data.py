@@ -22,9 +22,9 @@ def read_file(path):
         child_path = os.path.join(path, child_dir)
 
         for dir_image in os.listdir(child_path):
-            if endwith(dir_image, 'jpg'):
+            if endwith(dir_image, 'pgm'):
                 img = cv2.imread(os.path.join(child_path, dir_image))
-                resized_img = cv2.resize(img, (IMG_SIZE, IMG_SIZE))
+                resized_img = cv2.resize(img, (92, 112))
                 recolored_img = cv2.cvtColor(resized_img, cv2.COLOR_BGR2GRAY)
                 img_list.append(recolored_img)
                 label_list.append(dir_counter)
