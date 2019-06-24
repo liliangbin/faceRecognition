@@ -1,6 +1,7 @@
 import time
 
 import RPi.GPIO as GPIO
+import requests
 
 
 class Infrared(object):
@@ -27,3 +28,22 @@ class Infrared(object):
 
     def done(self):
         GPIO.cleanup()
+
+
+if __name__ == '__main__':
+    # inf = Infrared()
+    # while True:
+    #     if inf.detct():
+    #         print("find a people")
+    #     else:
+    #         print("no people ")
+
+    data = {
+        "key": "7b97e1bed4d6a452ab5bc68b9fc1e681",
+        "id": 1,
+        "status": "unlock"
+    }
+    # response = requests.get("http://kuailezhai.cn/mobile/", data=data)
+    response = requests.get('http://kuailezhai.cn/mobile/?key=7b97e1bed4d6a452ab5bc68b9fc1e681&id=1&status=unlock')
+
+    print(response.text)

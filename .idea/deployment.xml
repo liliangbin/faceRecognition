@@ -16,7 +16,7 @@
           </mappings>
         </serverdata>
       </paths>
-      <paths name="pi@192.168.137.128:22">
+      <paths name="pi@192.168.137.224:22">
         <serverdata>
           <mappings>
             <mapping deploy="/home/pi/liliangbin/faceRecognition" local="$PROJECT_DIR$" web="/" />
