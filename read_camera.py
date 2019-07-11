@@ -1,4 +1,6 @@
 # -*- coding:utf-8 -*-
+import requests
+
 __author__ = '万壑'
 
 import cv2
@@ -13,6 +15,7 @@ class Camera_reader(object):
         self.model = Model()
         self.model.load()
         self.img_size = 128
+        print("init")
         # 摄像头初始化  加快使用速度
         self.face_cascade = cv2.CascadeClassifier('./haarcascade_frontalface_alt.xml')
         # 读取dataset数据集下的子文件夹名称
@@ -37,6 +40,14 @@ class Camera_reader(object):
                 if prob > 0.9:  # 如果模型认为概率高于70%则显示为模型中已有的label
                     show_name = self.name_list[label]
                     print("get a face %s " % show_name)
+                    data = {
+                        "key": "7b97e1bed4d6a452ab5bc68b9fc1e681",
+                        "id": 1,
+                        "status": "open"
+                    }
+                    response = requests.get("http://kuailezhai.cn/update/?key=7b97e1bed4d6a452ab5bc68b9fc1e681&id=1&status=open")
+                    print(response.text)
+                    print("是管理员，允许开门")
                 else:
                     show_name = 'Stranger'
                 cv2.putText(frame, show_name, (x, y - 20), cv2.FONT_HERSHEY_SIMPLEX, 1, 255, 2)  # 显示名字
@@ -89,5 +100,6 @@ if __name__ == '__main__':
     #     test = Infrared.detct()
 
     #camera.build_camera()
-    camera.get_one_picture()
-    camera.camera_done()
+    #camera.get_one_picture()
+    camera.build_camera()
+    #camera.camera_done()
