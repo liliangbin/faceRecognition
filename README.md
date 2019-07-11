@@ -12,3 +12,7 @@
 - read_img read_data 和train_model 训练相关的代码，很简单那
 - pick_face 图片预处理。把图片中的人脸识别出来并存储为灰度图以便于我们后面的训练使用，数据预处理
 - 其他没啥意思了
+
+#### 使用
+- 训练模型 python train_model.py  数据集在 res目录下，，假如我们想训练训练识别自己的脸，使用pick_face.py 将图片假如进去
+- 打开摄像头并使用实时的人脸预测，  python read_camera.py  
